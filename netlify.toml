@@ -1,0 +1,10 @@
+[build]
+  command = "npm install"
+  functions = "netlify/functions"
+  publish = "."
+
+[functions]
+  included_files = ["shelton-ai-knowledge-base.md"]
+
+[functions."ask-shelton"]
+  node_bundler = "esbuild"

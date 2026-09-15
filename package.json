@@ -1,0 +1,9 @@
+{
+  "name": "shelton-ai-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "rwshelton.com — personal site with the Shelton.ai LLM-grounded terminal widget",
+  "dependencies": {
+    "@netlify/blobs": "^11.1.0"
+  }
+}
