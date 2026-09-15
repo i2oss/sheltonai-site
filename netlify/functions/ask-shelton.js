@@ -5,7 +5,7 @@ const { getStore } = require('@netlify/blobs');
 const KNOWLEDGE_BASE_PATH = path.join(__dirname, '../../shelton-ai-knowledge-base.md');
 const MODEL = 'claude-haiku-4-5-20251001';
 const MAX_QUESTION_LENGTH = 400;
-const MAX_TOKENS = 400;
+const MAX_TOKENS = 180;
 const DAILY_LIMIT_PER_IP = 20;
 
 let cachedSystemPrompt = null;
