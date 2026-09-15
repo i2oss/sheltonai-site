@@ -377,7 +377,13 @@
     display:grid; grid-template-columns:1fr 1fr; gap:44px;
     margin-top:44px; text-align:left;
   }
-  @media (max-width:680px){ .about-grid{ grid-template-columns:1fr; } }
+  @media (max-width:680px){
+    .about-grid{ grid-template-columns:1fr; }
+    .about-col-bio{ order:1; }
+    .about-col-education{ order:2; }
+    .about-col-skills{ order:3; }
+    .about-col-programs{ order:4; }
+  }
   .about-col-label{
     font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.12em;
     text-transform:uppercase; color:var(--ink-faint); margin-bottom:18px;
@@ -784,17 +790,17 @@
       <div class="section-eyebrow">01 — About</div>
       <h2>A bit more background</h2>
       <div class="about-grid">
-        <div>
+        <div class="about-col-bio">
           <div class="about-col-label">Bio</div>
           <p class="body-copy">Hi, I'm Ross &mdash; a North Carolina native who's spent the better half of his life on the west coast. From Alaska to San Diego and everywhere in between, after a decade of service in the U.S. Coast Guard, I went back to school and fell back in love with learning.</p>
           <p class="body-copy">AI/ML Engineering candidate currently enrolled in graduate training (Quantic MSAIE, in progress) with hands-on full-stack development experience building AI-assisted web applications, AI Agents in the service of technical documentation.</p>
           <p class="body-copy">I leverage my electronics and tech writing backgrounds to clarify process needs and harness LLMs providing elegant solutions through dynamic problem solving.</p>
         </div>
-        <div>
+        <div class="about-col-skills">
           <div class="about-col-label">Skills</div>
           <div class="skill-medals" id="skillMedals"></div>
         </div>
-        <div>
+        <div class="about-col-education">
           <div class="about-col-label">Education</div>
           <div class="timeline">
             <div class="tl-item">
@@ -817,7 +823,7 @@
             </div>
           </div>
         </div>
-        <div>
+        <div class="about-col-programs">
           <div class="about-col-label">Programs</div>
           <div class="skill-medals" id="programMedals"></div>
           <p class="muted-note" style="margin-top:22px;">Ring fill shows relative depth &mdash; hover a skill for its tier.</p>
