@@ -501,7 +501,7 @@
 
   .model-card{
     background:var(--term); border:1px solid var(--term-border);
-    border-radius:14px; padding:30px 32px; margin-top:44px; text-align:left;
+    border-radius:14px; padding:30px 32px; text-align:left;
   }
   .mc-head{ display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:14px; flex-wrap:wrap; }
   .mc-name{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:19px; color:var(--ink); }
@@ -525,6 +525,40 @@
     background:var(--accent-soft); border:1px solid rgba(124,77,255,0.3);
     padding:4px 10px; border-radius:999px;
   }
+  .mc-repo{ margin-top:16px; }
+  .mc-repo a{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--accent); text-decoration:none; }
+  .mc-repo a:hover{ text-decoration:underline; }
+
+  /* Project carousel: horizontal scroll/snap between model-cards */
+  .project-carousel{ margin-top:44px; }
+  .model-carousel{
+    display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory;
+    scroll-behavior:smooth; cursor:grab; padding-bottom:6px; margin:0 -2px;
+    scrollbar-width:thin; scrollbar-color:var(--term-border) transparent;
+  }
+  .model-carousel.is-dragging{ cursor:grabbing; scroll-snap-type:none; }
+  .model-carousel::-webkit-scrollbar{ height:6px; }
+  .model-carousel::-webkit-scrollbar-thumb{ background:var(--term-border); border-radius:3px; }
+  .model-carousel .model-card{
+    flex:0 0 100%; scroll-snap-align:start;
+  }
+  .carousel-controls{ display:flex; align-items:center; justify-content:center; gap:18px; margin-top:20px; }
+  .carousel-arrow{
+    width:34px; height:34px; border-radius:50%; flex:0 0 auto;
+    display:flex; align-items:center; justify-content:center;
+    background:#191b1d; border:1px solid var(--term-border); color:var(--ink-soft);
+    font-size:15px; line-height:1; cursor:pointer; appearance:none; -webkit-appearance:none;
+    transition:border-color .15s ease, color .15s ease, opacity .15s ease;
+  }
+  .carousel-arrow:hover{ border-color:var(--accent); color:var(--ink); }
+  .carousel-arrow:disabled{ opacity:0.35; cursor:default; }
+  .carousel-dots{ display:flex; align-items:center; gap:8px; }
+  .carousel-dot{
+    width:7px; height:7px; padding:0; border-radius:50%; border:none;
+    background:var(--term-border); cursor:pointer; appearance:none; -webkit-appearance:none;
+    transition:background .15s ease, transform .15s ease;
+  }
+  .carousel-dot.active{ background:var(--accent); transform:scale(1.25); }
 
   .contact-links{ display:flex; flex-direction:row; justify-content:center; align-items:center; gap:14px; margin-top:24px; }
   .contact-links a{ color:var(--accent); text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:14px; }
@@ -882,30 +916,69 @@
       <div class="section-eyebrow">03 — Projects</div>
       <h2>Things I've built</h2>
 
-      <div class="model-card">
-        <div class="mc-head">
-          <div>
-            <div class="mc-name">Café Fausse</div>
-            <div class="mc-sub">Full-Stack Restaurant Reservation Platform &middot; Independent Project, 2025</div>
+    </div>
+
+    <div class="project-carousel">
+      <div class="model-carousel" id="projectCarousel">
+        <div class="model-card">
+          <div class="mc-head">
+            <div>
+              <div class="mc-name">Café Fausse</div>
+              <div class="mc-sub">Full-Stack Restaurant Reservation Platform &middot; Independent Project, 2025</div>
+            </div>
+            <div class="mc-badge">Shipped</div>
           </div>
-          <div class="mc-badge">Shipped</div>
+          <div class="mc-desc">A full-stack reservation platform designed and built end-to-end &mdash; React front end, Flask REST API back end, and a PostgreSQL relational database &mdash; with real-time availability checks, automated table assignment across a 30-table inventory, and booking confirmation/error handling. Includes a responsive, cross-browser interface with a validated email-newsletter signup flow. Designed, built, tested, and documented using agentic, AI-assisted development practices with Claude Code, including a full Software Requirements Specification and deployment README.</div>
+          <div class="mc-stats">
+            <div><div class="mc-stat-val">30</div><div class="mc-stat-label">Tables Managed</div></div>
+            <div><div class="mc-stat-val">4</div><div class="mc-stat-label">Core Flows</div></div>
+            <div><div class="mc-stat-val">SRS</div><div class="mc-stat-label">Fully Documented</div></div>
+            <div><div class="mc-stat-val">Solo</div><div class="mc-stat-label">Build</div></div>
+          </div>
+          <div class="mc-tags">
+            <span class="mc-tag">React</span>
+            <span class="mc-tag">Flask</span>
+            <span class="mc-tag">PostgreSQL</span>
+            <span class="mc-tag">REST API</span>
+            <span class="mc-tag">Claude Code</span>
+          </div>
         </div>
-        <div class="mc-desc">A full-stack reservation platform designed and built end-to-end &mdash; React front end, Flask REST API back end, and a PostgreSQL relational database &mdash; with real-time availability checks, automated table assignment across a 30-table inventory, and booking confirmation/error handling. Includes a responsive, cross-browser interface with a validated email-newsletter signup flow. Designed, built, tested, and documented using agentic, AI-assisted development practices with Claude Code, including a full Software Requirements Specification and deployment README.</div>
-        <div class="mc-stats">
-          <div><div class="mc-stat-val">30</div><div class="mc-stat-label">Tables Managed</div></div>
-          <div><div class="mc-stat-val">4</div><div class="mc-stat-label">Core Flows</div></div>
-          <div><div class="mc-stat-val">SRS</div><div class="mc-stat-label">Fully Documented</div></div>
-          <div><div class="mc-stat-val">Solo</div><div class="mc-stat-label">Build</div></div>
-        </div>
-        <div class="mc-tags">
-          <span class="mc-tag">React</span>
-          <span class="mc-tag">Flask</span>
-          <span class="mc-tag">PostgreSQL</span>
-          <span class="mc-tag">REST API</span>
-          <span class="mc-tag">Claude Code</span>
+
+        <div class="model-card">
+          <div class="mc-head">
+            <div>
+              <div class="mc-name">S1000D MCP Server</div>
+              <div class="mc-sub">Agentic Review Workflow for Technical Publications &middot; Independent Project, 2026</div>
+            </div>
+            <div class="mc-badge">Shipped</div>
+          </div>
+          <div class="mc-desc">An MCP server and agentic review workflow for S1000D technical publications &mdash; the structured-authoring standard used across aerospace and defense. Exposes schema validation, cross-reference integrity checking, applicability checking, and LLM-assisted fix suggestions as tools an agent can call directly, chained into one review skill via a Claude SKILL.md. Built on a hand-built subset schema and a fully fictional sample corpus &mdash; no proprietary content.</div>
+          <div class="mc-stats">
+            <div><div class="mc-stat-val">4</div><div class="mc-stat-label">MCP Tools</div></div>
+            <div><div class="mc-stat-val">SKILL.md</div><div class="mc-stat-label">Chained Workflow</div></div>
+            <div><div class="mc-stat-val">CI</div><div class="mc-stat-label">GitHub Actions</div></div>
+            <div><div class="mc-stat-val">Solo</div><div class="mc-stat-label">Build</div></div>
+          </div>
+          <div class="mc-tags">
+            <span class="mc-tag">Python</span>
+            <span class="mc-tag">lxml</span>
+            <span class="mc-tag">MCP SDK</span>
+            <span class="mc-tag">Anthropic API</span>
+            <span class="mc-tag">pytest</span>
+            <span class="mc-tag">GitHub Actions</span>
+          </div>
+          <div class="mc-repo"><a href="https://github.com/i2oss/s1000d-mcp" target="_blank" rel="noopener">github.com/i2oss/s1000d-mcp &rarr;</a></div>
         </div>
       </div>
 
+      <div class="carousel-controls">
+        <button type="button" class="carousel-arrow" id="carouselPrev" aria-label="Previous project">&lsaquo;</button>
+        <div class="carousel-dots" id="carouselDots"></div>
+        <button type="button" class="carousel-arrow" id="carouselNext" aria-label="Next project">&rsaquo;</button>
+      </div>
+    </div>
+
+    <div class="section-inner wide">
       <p class="muted-note">More builds in progress — this section will grow.</p>
     </div>
   </section>
@@ -1072,6 +1145,87 @@
 
       renderMedals(programs, 'programMedals');
       renderMedals(skills, 'skillMedals');
+    })();
+  </script>
+
+  <script>
+    (function(){
+      const track = document.getElementById('projectCarousel');
+      if (!track) return;
+      const cards = Array.from(track.children);
+      if (cards.length < 2) return;
+
+      const dotsWrap = document.getElementById('carouselDots');
+      const prevBtn = document.getElementById('carouselPrev');
+      const nextBtn = document.getElementById('carouselNext');
+
+      cards.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'carousel-dot';
+        dot.setAttribute('aria-label', 'Go to project ' + (i + 1));
+        dot.addEventListener('click', () => scrollToIndex(i));
+        dotsWrap.appendChild(dot);
+      });
+      const dots = Array.from(dotsWrap.children);
+
+      function scrollToIndex(i){
+        i = Math.max(0, Math.min(cards.length - 1, i));
+        track.scrollTo({ left: cards[i].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+      }
+
+      function currentIndex(){
+        const scrollLeft = track.scrollLeft;
+        let closest = 0, minDist = Infinity;
+        cards.forEach((card, i) => {
+          const dist = Math.abs((card.offsetLeft - track.offsetLeft) - scrollLeft);
+          if (dist < minDist){ minDist = dist; closest = i; }
+        });
+        return closest;
+      }
+
+      function updateUI(){
+        const idx = currentIndex();
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        if (prevBtn) prevBtn.disabled = idx <= 0;
+        if (nextBtn) nextBtn.disabled = idx >= cards.length - 1;
+      }
+
+      let rafId = null;
+      track.addEventListener('scroll', function(){
+        if (rafId) return;
+        rafId = requestAnimationFrame(function(){ updateUI(); rafId = null; });
+      }, { passive: true });
+
+      if (prevBtn) prevBtn.addEventListener('click', () => scrollToIndex(currentIndex() - 1));
+      if (nextBtn) nextBtn.addEventListener('click', () => scrollToIndex(currentIndex() + 1));
+
+      // Click-and-drag horizontal scroll for mouse users (touch keeps native swipe/snap)
+      let isDown = false, startX = 0, startScroll = 0;
+      track.addEventListener('pointerdown', function(e){
+        if (e.pointerType && e.pointerType !== 'mouse') return;
+        isDown = true;
+        startX = e.clientX;
+        startScroll = track.scrollLeft;
+        track.classList.add('is-dragging');
+        track.setPointerCapture(e.pointerId);
+      });
+      track.addEventListener('pointermove', function(e){
+        if (!isDown) return;
+        track.scrollLeft = startScroll - (e.clientX - startX);
+      });
+      function endDrag(){
+        if (!isDown) return;
+        isDown = false;
+        track.classList.remove('is-dragging');
+        scrollToIndex(currentIndex());
+      }
+      track.addEventListener('pointerup', endDrag);
+      track.addEventListener('pointercancel', endDrag);
+      track.addEventListener('pointerleave', endDrag);
+
+      window.addEventListener('resize', updateUI);
+      updateUI();
     })();
   </script>
 
